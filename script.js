@@ -76,4 +76,40 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => {
         revealOnScroll.observe(el);
     });
+
+    // 5. Typewriter Effect
+    const typewriterElement = document.getElementById('typewriter');
+    if (typewriterElement) {
+        const phrases = ["Data Engineer", "AI Engineer", "Software Engineer"];
+        let phraseIndex = 0;
+        let letterIndex = phrases[0].length;
+        let isDeleting = true;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, letterIndex - 1);
+                letterIndex--;
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, letterIndex + 1);
+                letterIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && letterIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2500; // pause before deleting
+            } else if (isDeleting && letterIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500; // pause before typing
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        setTimeout(type, 2500);
+    }
 });
