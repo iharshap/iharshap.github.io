@@ -69,7 +69,7 @@ main {
 }
 
 .section {
-    padding: 6rem 0;
+    padding: 3rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -133,19 +133,36 @@ main {
 }
 
 /* Hero Section */
-.hero-section {
-    min-height: 80vh;
+.hero {
     display: flex;
-    align-items: center;
-    padding-top: 10rem; /* Account for nav */
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 0 0 0; /* Clear the fixed nav */
+    margin-top: 0;
+}
+
+.wavy-line {
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    opacity: 0.8;
+}
+
+.wavy-line path {
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
 }
 
 .hero-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    width: 100%;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    margin: 2rem 0;
 }
 
 .hero-text {
@@ -249,13 +266,14 @@ main {
     display: grid;
     grid-template-columns: 150px 1fr;
     gap: 2rem;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .timeline-date {
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
+    padding-top: 10px;
 }
 
 .timeline-content h3 {
@@ -315,26 +333,40 @@ main {
 .tech-stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
 }
 
 .tech-stack span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    background-color: var(--hover-bg);
     color: var(--text-secondary);
-    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 400;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    cursor: default;
 }
 
+.tech-stack span:hover {
+    opacity: 1;
+    color: var(--text-color);
+}
+
+.tech-stack span i,
+.tech-stack span svg,
 .tech-stack span img {
     height: 14px;
     width: auto;
     object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.tech-stack span:hover i,
+.tech-stack span:hover svg,
+.tech-stack span:hover img {
+    transform: scale(1.1);
 }
 
 /* Bento Grid */
